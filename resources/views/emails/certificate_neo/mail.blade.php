@@ -52,7 +52,7 @@
 
 <body>
       <div class="name">
-            @if($participant->position === 'Participant')
+            @if($participant->position === 'Participant' || $participant->position === 'Semifinalist' || $participant->position === 'Finalist')
                   <h1 class="head_email">Dear {{ $participant->name }},</h1>
                   <p class="body_email">
                         Thank you for participating in our {{ $participant->competition }} Competition at NEO 2022. We truly appreciate that you have spent so much time in the competition this time. Keep up this diligent work and show your improvement over this in upcoming competitions!
@@ -70,6 +70,25 @@
                         Email   : neo.bnec@gmail.com<br>
                         <img src="https://neo.mybnec.org/storage/images/assets/NEO_2.png" width="200px">
                   </p>
+            @elseif($participant->position === 'Liaison Officer')
+                  <h1 class="head_email">Dear {{ $participant->name }},</h1>
+                  <p class="body_email">
+                        Thank you for your hard work for NEO 2022. We truly appreciate that you have spent so much time in preparing and executing the competition. Keep up this diligent work and show your improvement in the next event!
+                        <br><br>
+                        We have also attached the certificate which you can access in this email. If you have further questions, please don’t hesitate to let us know.
+                  <p class="foot_email">
+                        Thank you, and have a great day.
+                  </p>
+                  <br><br>
+                  <p class="signature">
+                        --<br>
+                        Best Regards,<br>
+                        The 2022 National English Olympics Committee<br>
+                        Phone  : +62 812 7794 3168<br>
+                        Email   : neo.bnec@gmail.com<br>
+                        <img src="https://neo.mybnec.org/storage/images/assets/NEO_2.png" width="200px">
+                  </p>
+            
             @else
                   <h1 class="head_email">Dear {{ $participant->name }},</h1>
                   <p class="body_email">

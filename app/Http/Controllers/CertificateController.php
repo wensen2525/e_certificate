@@ -85,11 +85,13 @@ class CertificateController extends Controller
     }
 
     public function downloadAllCertificates($scale){
-        if($scale === '1 - 50'){
-            $participants = Participant::all()->take(50);
-        }   
-        elseif($scale === '51 - 100'){
-            $participants = Participant::all()->skip(50)->take(50);
+        if($scale === '1 - 25'){
+            $participants = Participant::all()->take(25);
+        }
+        elseif($scale === '26 - 50'){
+            $participants = Participant::all()->skip(25)->take(25);
+        }elseif($scale === '51 - 75'){
+            $participants = Participant::all()->skip(50)->take(25);
         }
             
 
@@ -101,9 +103,15 @@ class CertificateController extends Controller
             ])->setPaper('a4', 'landscape');
 
             $content = $pdf->download();
-
-            Storage::put('public/certi/'.$participant->name.'.pdf',$content);
+            if($participant->position === 'Liaison Officer'){
+                Storage::put('public/LO/'.$participant->competition.'/'.$participant->name.'.pdf',$content);
+            }
+            else{
+                Storage::put('public/custom/'.$participant->competition.'/'.$participant->name.'.pdf',$content);
+            }
         }
+
+           
         return redirect()->back();
     }
 
@@ -117,7 +125,7 @@ class CertificateController extends Controller
 
         $content = $pdf->download();
 
-        Storage::put('public/certi/'.$participant->name.'.pdf',$content);
+        Storage::put('public/custom/'.$participant->competition.'/'.$participant->name.'.pdf',$content);
         return redirect()->back();
     }
     // 

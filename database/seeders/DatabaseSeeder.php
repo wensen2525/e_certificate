@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\BOM30th;
 use App\Models\Participant;
 use Illuminate\Database\Seeder;
 
@@ -22,6 +23,10 @@ class DatabaseSeeder extends Seeder
 
         Participant::factory()
             ->count(50)
+            ->create();
+
+        BOM30th::factory()
+            ->count(5)
             ->create();
     }
 }

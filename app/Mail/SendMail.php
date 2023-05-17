@@ -30,17 +30,17 @@ class SendMail extends Mailable
     public function build()
     {   
         $participant = $this->participant;
-        // $length_name = Str::length($participant->name);
-        // $pdf = Pdf::loadView('certificates.pdf',[
-        //     'length_name' => $length_name,
-        //     'participant' => $participant
-        // ])->setPaper('a4', 'landscape');
-        // dd(Storage::disk('/public/certi/')->exists($participant->name . '.pdf'));
-        // $file_path = storage_path().'/app/public/certi/'. $participant->name . '.pdf';
 
-        return $this->markdown('emails.certificate_neo.mail')
+        if($participant->position === 'Liaison Officer'){
+            return $this->markdown('emails.certificate_neo.mail')
+                    ->subject('NEO 2022 - Liaison Officer Certificate')
+                    ->attach(storage_path().'/app/public/LO/'.$participant->competition.'/'. $participant->name . '.pdf');
+        }else{
+            return $this->markdown('emails.certificate_neo.mail')
                     ->subject('NEO 2022 - Participant Certificate')
-                    ->attach(storage_path().'/app/public/certi/'. $participant->name . '.pdf');
+                    ->attach(storage_path().'/app/public/custom/'.$participant->competition.'/'. $participant->name . '.pdf');
+        }
+        
     }
 
     // /**

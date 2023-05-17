@@ -50,7 +50,17 @@
             color: #ffffff;
             margin-bottom: .135in;
             text-align: center;
-            
+            margin-top: 2.7in;
+        }
+        .long_name1 {
+            font-size: .4in;
+            line-height: .55in;
+            font-weight: 600;
+            /* text-transform: capitalize; */
+            color: #ffffff;
+            margin-bottom: .23in;
+            text-align: center;
+            margin-top: 2.7in;
         }
         .short_name {
             font-size: .5in;
@@ -60,22 +70,52 @@
             color: #ffffff;
             margin-bottom: .135in;
             text-align: center;
-            
+            margin-top: 2.7in;
+        }
+        .short_name1 {
+            font-size: .5in;
+            line-height: .55in;
+            font-weight: 600;
+            /* text-transform: capitalize; */
+            color: #ffffff;
+            margin-bottom: .23in;
+            text-align: center;
+            margin-top: 2.7in;
         }
         .position {
             line-height: .4cm;
             padding: 0;
             margin: 0;
             font-size: .215in;
-            font-weight: 500;
+            font-weight: 400;
             color: #ffffff;
             text-align: center;
-            margin-bottom: 0.93in;
+            
+            margin-bottom: 0.1in;
+        }
+        .position1 {
+            line-height: .4cm;
+            padding: 0;
+            margin: 0;
+            font-size: .215in;
+            font-weight: 400;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 0.1in;
+        }
+        .event {
+            line-height: .4cm;
+            padding: 0;
+            margin: 0;
+            font-size: .215in;
+            font-weight: 400;
+            color: #ffffff;
+            text-align: center;
         }
 
         .general_president {
             font-size: .17in;
-            font-weight: 600;
+            font-weight: 500;
             color: #ffffff;
             text-align: center;
 
@@ -85,7 +125,7 @@
         }
         .rector {
             font-size: .17in;
-            font-weight: 600;
+            font-weight: 500;
             color: #ffffff;
             text-align: center;
 
@@ -93,7 +133,7 @@
         }
         .project_manager {
             font-size: .17in;
-            font-weight: 600;
+            font-weight: 500;
             color: #ffffff;
             text-align: center;
 
@@ -110,46 +150,49 @@
 <body>
     <img src="../public/storage/certificates/NEO-2022-full.jpg" alt="NEO-2022-full" style="position:absolute; width: 11.6929in; top:0;left:0">
         <main>
-            <p class="introduction">
-                THIS CERTIFICATE IS AWARDED TO :
-            </p>
-            @if($length_name > 29)
-                <p class="long_name">
-                    {{ $participant->name }}
+            @if($participant->competition === 'Speech (Junior High School Category)' || $participant->competition === 'Speech (Open Category)' || $participant->competition === 'Logistic, Accommodation, and Equipment')
+                @if($length_name > 28)
+                    <p class="long_name">
+                        {{ $participant->name }}
+                    </p>
+                @else
+                    <p class="short_name">
+                        {{ $participant->name }}
+                    </p>
+                @endif
+                <p class="position">
+                    @if($participant->position === 'Liaison Officer')
+                        As the <a style="font-weight: 600;">{{ $participant->position }} of {{ $participant->competition }} Division</a> in
+                    @else
+                        As the <a style="font-weight: 500;">{{ $participant->position }} of {{ $participant->competition }} Competition</a> in
+                    @endif
+                    <br>
+                    <div class="event">
+                        The 2022 National English Olympics 
+                    </div>
                 </p>
             @else
-                <p class="short_name">
-                    {{ $participant->name }}
+                @if($length_name > 28)
+                    <p class="long_name1">
+                        {{ $participant->name }}
+                    </p>
+                @else
+                    <p class="short_name1">
+                        {{ $participant->name }}
+                    </p>
+                @endif
+                <p class="position1">
+                    @if($participant->position === 'Liaison Officer')
+                        As the <a style="font-weight: 600;">{{ $participant->position }} of {{ $participant->competition }} Division</a> in
+                    @else
+                        As the <a style="font-weight: 500;">{{ $participant->position }} of {{ $participant->competition }} Competition</a> in
+                    @endif
+                    <br>
+                    <div class="event">
+                        The 2022 National English Olympics 
+                    </div>
                 </p>
             @endif
-            <p class="position">
-                As the <strong>{{ $participant->position }} of {{ $participant->competition }} Competition</strong> in
-                <br>
-                The 2022 National English Olympics
-            </p>
-            <div class="general_president">
-                WISNU RAMADHAN
-                <br>
-                <div style="font-weight:500;font-size:0.16in">
-                    General President
-                </div>
-            </div>
-            <div class="rector">
-                JOHAN, S.KOM., M.M., CDMS
-                <br>
-                <div style="font-weight:500;font-size:0.15in;line-height: 0.3cm;margin-top:7px">
-                    Vice Rector Student Affairs &
-                    <br>
-                    Community Development
-                </div>
-            </div>
-            <div class="project_manager">
-                VANESA YANIARTA
-                <br>
-                <div style="font-weight:500;font-size:0.16in">
-                    Project Manager
-                </div>
-            </div>
         </main>
 </body>
 </html>
